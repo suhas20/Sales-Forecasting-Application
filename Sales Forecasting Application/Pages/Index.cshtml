@@ -1,0 +1,75 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Sales Forecasting";
+}
+
+<h2>Sales Forecasting</h2>
+
+<form method="post">
+    <label for="year">Select Year:</label>
+    <select id="year" name="year">
+        @for (int i = 2018; i <= 2021; i++)
+        {
+            <option value="@i">@i</option>
+        }
+    </select>
+    <label for="increment">Percentage Increment:</label>
+    <input type="number" id="increment" name="increment" step="0.1" min="0" />
+    <button type="submit">Query Sales</button>
+</form>
+
+@if (Model.Sales != null)
+{
+    <h3>Total Sales for @Model.selcted_Year</h3>
+    <p>@Model.TotalSales</p>
+
+    <h4>Sales Breakdown by State:</h4>
+    @if(Model.Increment == 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>State</th>
+                    <th>Sales</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Sales)
+                {
+                    <tr>
+                        <td>@item.State</td>
+                        <td>@item.Orders</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    }else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>State</th>
+                    <th>Old Sales</th>
+                    <th>Incremented Sales</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Incsales)
+                {
+                    <tr>
+                        <td>@item.State</td>
+                        <td>@item.Orders</td>
+                        <td>@item.IncrementedSales</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <form method="post" asp-page-handler="Download">
+            <button type="submit">Download Forecasted Data</button>
+        </form>
+    }
+   
+}
