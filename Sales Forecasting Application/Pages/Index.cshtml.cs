@@ -22,6 +22,7 @@ namespace Sales_Forecasting_Application.Pages
         public List<OrdersDTO> Sales { get; set; }
         public int selcted_Year { get; set; }
         public decimal TotalSales { get; set; }
+        public decimal TotalSalesAfterInc { get; set; }
         public decimal Increment { get; set; }
         public List<OrdersDTO> Incsales { get; set; }
         [TempData]
@@ -74,6 +75,7 @@ namespace Sales_Forecasting_Application.Pages
                 }).ToList();
 
                 TempIncData = JsonConvert.SerializeObject(Incsales);
+                TotalSalesAfterInc = Incsales.Sum(s => s.IncrementedSales);
             }
 
             
@@ -95,4 +97,4 @@ namespace Sales_Forecasting_Application.Pages
             return File(Encoding.UTF8.GetBytes(csv.ToString()), "text/csv", "Forecasted_Sales_Data.csv");
         }
     }
-}
+} 

@@ -6,23 +6,28 @@
 
 <h2>Sales Forecasting</h2>
 
-<form method="post">
+<form class="form-inline" method="post">
     <label for="year">Select Year:</label>
-    <select id="year" name="year">
+    <select class="form-select mb-2 mr-sm-2" id="year" name="year">
         @for (int i = 2018; i <= 2021; i++)
         {
             <option value="@i">@i</option>
         }
     </select>
-    <label for="increment">Percentage Increment:</label>
-    <input type="number" id="increment" name="increment" step="0.1" min="0" />
-    <button type="submit">Query Sales</button>
+    <label class="form-label" for="increment">Percentage Increment:</label>
+    <input type="number" class="form-control mb-2 mr-sm-2" id="increment" name="increment" step="0.1" min="0" />
+    <button class="btn btn-success" type="submit">Query Sales</button>
 </form>
 
 @if (Model.Sales != null)
 {
-    <h3>Total Sales for @Model.selcted_Year</h3>
-    <p>@Model.TotalSales</p>
+    <h4>Total Sales for @Model.selcted_Year</h4>
+    <p>@Model.TotalSales.ToString("C")</p>
+    @if(Model.Increment != 0)
+    {
+        <h4>Total Sales for @Model.selcted_Year after Incremenet</h4>
+        <p>@Model.TotalSalesAfterInc.ToString("C")</p>
+    }
 
     <h4>Sales Breakdown by State:</h4>
     @if(Model.Increment == 0)
@@ -68,7 +73,7 @@
         </table>
 
         <form method="post" asp-page-handler="Download">
-            <button type="submit">Download Forecasted Data</button>
+            <button class="btn btn-danger" type="submit">Download Forecasted Data</button>
         </form>
     }
    
