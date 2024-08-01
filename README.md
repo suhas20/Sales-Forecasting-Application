@@ -4,10 +4,10 @@ This Project is a Sales forecasting application that allows user to query histor
 and download the forcasted data in CSV format.The application is built using ASP.NET Razor pages.
 
 -> Features
-1.Query total sales and a breakdown of sales by state for a selected year.
-2.Apply a percentage increment to stimulate future sales.
-3.Download the forecasted sales data in CSV format.
-4.User friendly interface for interacting with the application.
+1. Query total sales and a breakdown of sales by state for a selected year.
+2. Apply a percentage increment to stimulate future sales.
+3. Download the forecasted sales data in CSV format.
+4. User friendly interface for interacting with the application.
 
 -> Prerequisites
 1. [.Net 6 SDK]
